@@ -134,7 +134,10 @@ def complete_demo_payment(request):
                 transaction_reference=_build_transaction_reference(),
             )
 
-        send_order_confirmation_email(order)
+        try:
+            send_order_confirmation_email(order)
+        except Exception:
+            pass
 
         return Response({
             "data": {
