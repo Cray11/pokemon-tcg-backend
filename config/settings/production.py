@@ -47,6 +47,9 @@ SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
+if not os.getenv("EMAIL_HOST_PASSWORD"):
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 if os.getenv("SENTRY_DSN"):
     sentry_sdk.init(
         dsn=os.getenv("SENTRY_DSN"),

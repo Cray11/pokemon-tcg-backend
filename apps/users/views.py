@@ -33,7 +33,10 @@ class RegisterView(generics.CreateAPIView):
         if not serializer.is_valid():
             return error_response(serializer.errors, "Registration failed.")
         user = serializer.save()
-        send_welcome_email(user)
+        try:
+            send_welcome_email(user)
+        except Exception:
+            pass
         tokens = get_tokens_for_user(user)
         return success_response(
             data={"user": UserSerializer(user).data, "tokens": tokens},
