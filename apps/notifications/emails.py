@@ -48,7 +48,7 @@ def _send(subject, html_message, recipient_list):
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=recipient_list,
             html_message=html_message,
-            fail_silently=False,
+            fail_silently=True,
         )
     except Exception as error:
         import logging
